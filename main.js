@@ -1,3 +1,21 @@
+// Theme Toggle Logic
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Check for saved theme preference
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    body.classList.toggle('dark-mode', savedTheme === 'dark');
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    // If no saved preference, check system preference
+    body.classList.add('dark-mode');
+}
+
+themeToggle.addEventListener('click', () => {
+    const isDarkMode = body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+});
+
 class ProductItem extends HTMLElement {
     constructor() {
         super();

@@ -35,6 +35,7 @@ This document outlines the design and implementation of a modern, responsive, an
 
 ### 4. **Features & Enhancements**
 
+*   **Dark Mode Toggle:** A theme switcher in the header to toggle between light and dark modes. User preferences are persisted using `localStorage`.
 *   **Product Data:** Initially, product data will be stored in a local JavaScript array. In the future, this could be fetched from a remote API.
 *   **Accessibility (A11Y):** Ensure all elements are accessible by using semantic HTML and ARIA attributes where necessary.
 *   **Interactivity:** Add a "glow" effect to buttons and other interactive elements on hover/focus.
