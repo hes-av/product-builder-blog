@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animal Face Test - Dog or Cat?</title>
+    <title>동물상 테스트 - 강아지상? 고양이상?</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="logo">
-            <h1><a href="/">🐾 Animal Face Test</a></h1>
+            <h1><a href="/">🐾 동물상 테스트</a></h1>
         </div>
         <div class="header-right">
             <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
@@ -22,8 +22,8 @@
 
     <main>
         <section class="hero">
-            <h2>What animal do you look like?</h2>
-            <p>Our AI will analyze your features and tell you if you're more like a 🐶 Dog or a 🐱 Cat!</p>
+            <h2>나는 어떤 동물과 닮았을까?</h2>
+            <p>인공지능이 당신의 얼굴을 분석하여 🐶 강아지상인지 🐱 고양이상인지 알려드립니다!</p>
         </section>
 
         <section class="upload-section">
@@ -31,45 +31,45 @@
                 <div class="upload-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
                 </div>
-                <h3>Click or Drag Image Here</h3>
-                <p>Upload a clear photo of your face</p>
+                <h3>이미지를 클릭하거나 드래그하세요</h3>
+                <p>얼굴이 잘 나온 사진을 업로드해주세요</p>
                 <input type="file" id="file-input" accept="image/*" hidden>
             </div>
             <div class="divider">
-                <span>OR</span>
+                <span>또는</span>
             </div>
             <button id="webcam-btn" class="webcam-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                Use Real-time Webcam
+                실시간 웹캠 사용하기
             </button>
             <div id="webcam-container" class="webcam-container hidden">
                 <div id="webcam-wrapper"></div>
-                <button id="capture-btn" class="capture-btn">Capture & Analyze</button>
+                <button id="capture-btn" class="capture-btn">촬영 및 분석하기</button>
             </div>
         </section>
 
         <section id="result-section" class="result-section hidden">
             <div class="result-card">
                 <div class="preview-container">
-                    <img id="image-preview" src="" alt="Your face preview">
+                    <img id="image-preview" src="" alt="내 얼굴 미리보기">
                     <div id="loading-overlay" class="loading-overlay hidden">
                         <div class="spinner"></div>
-                        <p>AI is thinking...</p>
+                        <p>AI가 분석 중입니다...</p>
                     </div>
                 </div>
                 
                 <div id="analysis-results" class="analysis-results">
-                    <h2 id="final-verdict">Determining your inner animal...</h2>
+                    <h2 id="final-verdict">당신의 동물상을 분석 중입니다...</h2>
                     <div class="label-container">
                         <div class="label-row">
-                            <span class="label">🐶 Dog Face</span>
+                            <span class="label">🐶 강아지상</span>
                             <div class="progress-bar">
                                 <div id="dog-progress" class="progress-fill dog" style="width: 0%"></div>
                             </div>
                             <span id="dog-percent" class="percent">0%</span>
                         </div>
                         <div class="label-row">
-                            <span class="label">🐱 Cat Face</span>
+                            <span class="label">🐱 고양이상</span>
                             <div class="progress-bar">
                                 <div id="cat-progress" class="progress-fill cat" style="width: 0%"></div>
                             </div>
@@ -77,14 +77,14 @@
                         </div>
                     </div>
                     <p id="fun-fact" class="fun-fact"></p>
-                    <button id="retry-btn" class="retry-btn">Try Another Photo</button>
+                    <button id="retry-btn" class="retry-btn">다시 테스트하기</button>
                 </div>
             </div>
         </section>
 
         <section class="comments-section">
             <div class="card">
-                <h2>Share your results!</h2>
+                <h2>결과를 공유해보세요!</h2>
                 <div id="disqus_thread"></div>
                 <script>
                     (function() { // DON'T EDIT BELOW THIS LINE

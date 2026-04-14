@@ -127,13 +127,13 @@ function resetResults() {
     catProgress.style.width = '0%';
     dogPercent.textContent = '0%';
     catPercent.textContent = '0%';
-    finalVerdict.textContent = 'Determining your inner animal...';
+    finalVerdict.textContent = '당신의 동물상을 분석 중입니다...';
     funFact.textContent = '';
 }
 
 async function handleImage(file) {
     if (!file.type.startsWith('image/')) {
-        alert('Please upload an image file!');
+        alert('이미지 파일을 업로드해주세요!');
         return;
     }
 
@@ -175,14 +175,14 @@ async function predict(inputElement) {
 
     // Final Verdict
     if (dogScore > catScore) {
-        finalVerdict.textContent = "You are a Dog Face! 🐶";
-        funFact.textContent = "Dogs are known for their loyalty, energy, and friendly nature. You probably have a warm smile that brightens everyone's day!";
+        finalVerdict.textContent = "당신은 강아지상입니다! 🐶";
+        funFact.textContent = "강아지상은 충성심이 강하고 에너지가 넘치며 다정한 성격으로 알려져 있습니다. 당신의 따뜻한 미소는 주변 사람들의 기분을 환하게 만들어 줄 거예요!";
     } else if (catScore > dogScore) {
-        finalVerdict.textContent = "You are a Cat Face! 🐱";
-        funFact.textContent = "Cats are mysterious, independent, and elegant. You likely have a sharp, sophisticated look and a cool, calm personality.";
+        finalVerdict.textContent = "당신은 고양이상입니다! 🐱";
+        funFact.textContent = "고양이상은 신비롭고 독립적이며 우아한 매력을 가지고 있습니다. 날카로우면서도 세련된 외모와 차분하고 침착한 성격의 소유자일 확률이 높아요!";
     } else {
-        finalVerdict.textContent = "You're a mysterious hybrid! 🐾";
-        funFact.textContent = "You have a unique blend of features that makes you truly one of a kind!";
+        finalVerdict.textContent = "신비로운 혼합형입니다! 🐾";
+        funFact.textContent = "강아지와 고양이의 매력을 모두 갖춘 당신은 정말 특별한 존재네요!";
     }
 }
 
