@@ -2,12 +2,10 @@
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-// Check for saved theme preference
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
     body.classList.toggle('dark-mode', savedTheme === 'dark');
 } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    // If no saved preference, check system preference
     body.classList.add('dark-mode');
 }
 
@@ -16,118 +14,185 @@ themeToggle.addEventListener('click', () => {
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
 });
 
-class ProductItem extends HTMLElement {
-    constructor() {
-        super();
-        const shadow = this.attachShadow({ mode: 'open' });
+// Teachable Machine Integration
+const MODEL_URL = "https://teachablemachine.withgoogle.com/models/CVkszXzkx/";
+let model, webcam, maxPredictions;
 
-        const image = this.getAttribute('image');
-        const name = this.getAttribute('name');
-        const price = this.getAttribute('price');
+async function initModel() {
+    const modelURL = MODEL_URL + "model.json";
+    const metadataURL = MODEL_URL + "metadata.json";
+    model = await tmImage.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses();
+}
 
-        shadow.innerHTML = `
-            <style>
-                :host {
-                    display: block;
-                    background-color: var(--card-background, #fff);
-                    border-radius: 12px;
-                    box-shadow: 0 8px 24px var(--shadow-color, rgba(0,0,0,0.1));
-                    overflow: hidden;
-                    transition: transform 0.3s ease, box-shadow 0.3s ease;
-                }
-                :host(:hover) {
-                    transform: translateY(-5px);
-                    box-shadow: 0 12px 32px var(--shadow-color, rgba(0,0,0,0.15));
-                }
-                img {
-                    width: 100%;
-                    height: 200px;
-                    object-fit: cover;
-                }
-                .info {
-                    padding: 1.5rem;
-                }
-                h3 {
-                    font-size: 1.2rem;
-                    font-weight: 600;
-                    margin: 0 0 0.5rem;
-                }
-                .price {
-                    font-size: 1.1rem;
-                    font-weight: 500;
-                    color: var(--primary-color, #3a7bd5);
-                    margin-bottom: 1rem;
-                }
-                button {
-                    background: linear-gradient(45deg, var(--primary-color, #3a7bd5), var(--secondary-color, #3a6073));
-                    color: #fff;
-                    border: none;
-                    padding: 0.8rem 1.5rem;
-                    border-radius: 8px;
-                    cursor: pointer;
-                    font-weight: 500;
-                    transition: box-shadow 0.3s ease;
-                    box-shadow: 0 0 15px var(--glow-color, rgba(58, 123, 213, 0));
-                }
-                button:hover {
-                    box-shadow: 0 0 25px var(--glow-color, rgba(58, 123, 213, 0.7));
-                }
-            </style>
-            <div>
-                <img src="${image}" alt="${name}">
-                <div class="info">
-                    <h3>${name}</h3>
-                    <p class="price">${price}</p>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-        `;
+// UI Elements
+const uploadArea = document.getElementById('upload-area');
+const fileInput = document.getElementById('file-input');
+const resultSection = document.getElementById('result-section');
+const imagePreview = document.getElementById('image-preview');
+const loadingOverlay = document.getElementById('loading-overlay');
+const dogProgress = document.getElementById('dog-progress');
+const catProgress = document.getElementById('cat-progress');
+const dogPercent = document.getElementById('dog-percent');
+const catPercent = document.getElementById('cat-percent');
+const finalVerdict = document.getElementById('final-verdict');
+const funFact = document.getElementById('fun-fact');
+const retryBtn = document.getElementById('retry-btn');
+const uploadSection = document.querySelector('.upload-section');
+const webcamBtn = document.getElementById('webcam-btn');
+const webcamContainer = document.getElementById('webcam-container');
+const webcamWrapper = document.getElementById('webcam-wrapper');
+const captureBtn = document.getElementById('capture-btn');
 
-        shadow.querySelector('button').addEventListener('click', () => {
-            this.dispatchEvent(new CustomEvent('add-to-cart', { bubbles: true, composed: true }));
-        });
+// Event Listeners for Upload
+uploadArea.addEventListener('click', () => fileInput.click());
+
+uploadArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadArea.style.borderColor = 'var(--secondary-color)';
+    uploadArea.style.transform = 'scale(1.02)';
+});
+
+uploadArea.addEventListener('dragleave', () => {
+    uploadArea.style.borderColor = 'var(--primary-color)';
+    uploadArea.style.transform = 'scale(1)';
+});
+
+uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadArea.style.borderColor = 'var(--primary-color)';
+    uploadArea.style.transform = 'scale(1)';
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+        handleImage(files[0]);
+    }
+});
+
+fileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+        handleImage(e.target.files[0]);
+    }
+});
+
+// Webcam Logic
+webcamBtn.addEventListener('click', async () => {
+    webcamBtn.classList.add('hidden');
+    webcamContainer.classList.remove('hidden');
+    
+    if (!model) await initModel();
+    
+    const flip = true;
+    webcam = new tmImage.Webcam(400, 400, flip);
+    await webcam.setup();
+    await webcam.play();
+    window.requestAnimationFrame(loop);
+    
+    webcamWrapper.appendChild(webcam.canvas);
+});
+
+async function loop() {
+    webcam.update();
+    window.requestAnimationFrame(loop);
+}
+
+captureBtn.addEventListener('click', async () => {
+    const canvas = webcam.canvas;
+    const dataUrl = canvas.toDataURL('image/png');
+    
+    // Stop webcam
+    if (webcam) {
+        webcam.stop();
+        webcamWrapper.innerHTML = '';
+        webcamContainer.classList.add('hidden');
+        webcamBtn.classList.remove('hidden');
+    }
+    
+    imagePreview.src = dataUrl;
+    uploadSection.classList.add('hidden');
+    resultSection.classList.remove('hidden');
+    loadingOverlay.classList.remove('hidden');
+    
+    await predict(canvas);
+});
+
+retryBtn.addEventListener('click', () => {
+    resultSection.classList.add('hidden');
+    uploadSection.classList.remove('hidden');
+    fileInput.value = '';
+    resetResults();
+});
+
+function resetResults() {
+    dogProgress.style.width = '0%';
+    catProgress.style.width = '0%';
+    dogPercent.textContent = '0%';
+    catPercent.textContent = '0%';
+    finalVerdict.textContent = 'Determining your inner animal...';
+    funFact.textContent = '';
+}
+
+async function handleImage(file) {
+    if (!file.type.startsWith('image/')) {
+        alert('Please upload an image file!');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+        imagePreview.src = e.target.result;
+        uploadSection.classList.add('hidden');
+        resultSection.classList.remove('hidden');
+        loadingOverlay.classList.remove('hidden');
+
+        if (!model) {
+            await initModel();
+        }
+
+        predict(imagePreview);
+    };
+    reader.readAsDataURL(file);
+}
+
+async function predict(inputElement) {
+    const prediction = await model.predict(inputElement);
+    loadingOverlay.classList.add('hidden');
+
+    let dogScore = 0;
+    let catScore = 0;
+
+    prediction.forEach(p => {
+        const name = p.className.toLowerCase();
+        if (name === 'dog' || name.includes('강아지')) {
+            dogScore = p.probability;
+        } else if (name === 'cat' || name.includes('고양이')) {
+            catScore = p.probability;
+        }
+    });
+
+    // Update UI with scores
+    updateScore('dog', dogScore);
+    updateScore('cat', catScore);
+
+    // Final Verdict
+    if (dogScore > catScore) {
+        finalVerdict.textContent = "You are a Dog Face! 🐶";
+        funFact.textContent = "Dogs are known for their loyalty, energy, and friendly nature. You probably have a warm smile that brightens everyone's day!";
+    } else if (catScore > dogScore) {
+        finalVerdict.textContent = "You are a Cat Face! 🐱";
+        funFact.textContent = "Cats are mysterious, independent, and elegant. You likely have a sharp, sophisticated look and a cool, calm personality.";
+    } else {
+        finalVerdict.textContent = "You're a mysterious hybrid! 🐾";
+        funFact.textContent = "You have a unique blend of features that makes you truly one of a kind!";
     }
 }
 
-customElements.define('product-item', ProductItem);
-
-const products = [
-    {
-        name: 'Wireless Headphones',
-        price: '$99.99',
-        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop'
-    },
-    {
-        name: 'Stylish Smartwatch',
-        price: '$199.99',
-        image: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=1964&auto=format&fit=crop'
-    },
-    {
-        name: 'Modern Backpack',
-        price: '$79.99',
-        image: 'https://images.unsplash.com/photo-1553062407-98eeb6e0e5c8?q=80&w=1887&auto=format&fit=crop'
-    },
-    {
-        name: 'Organic Green Tea',
-        price: '$19.99',
-        image: 'https://images.unsplash.com/photo-1556742054-c1de3a4e5033?q=80&w=2070&auto=format&fit=crop'
-    }
-];
-
-const productGrid = document.getElementById('product-grid');
-
-products.forEach(product => {
-    const productItem = document.createElement('product-item');
-    productItem.setAttribute('name', product.name);
-    productItem.setAttribute('price', product.price);
-    productItem.setAttribute('image', product.image);
-    productGrid.appendChild(productItem);
-});
-
-const cartCount = document.querySelector('.cart-count');
-let currentCartCount = 0;
-
-document.addEventListener('add-to-cart', () => {
-    currentCartCount++;
-    cartCount.textContent = currentCartCount;
-});
+function updateScore(animal, score) {
+    const percent = Math.round(score * 100);
+    const progressFill = document.getElementById(`${animal}-progress`);
+    const percentText = document.getElementById(`${animal}-percent`);
+    
+    setTimeout(() => {
+        progressFill.style.width = `${percent}%`;
+        percentText.textContent = `${percent}%`;
+    }, 100);
+}

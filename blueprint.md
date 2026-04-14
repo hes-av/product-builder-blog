@@ -1,42 +1,53 @@
 
-# Shopping Mall Application Blueprint
+# Animal Face Test Application Blueprint
 
 ## Overview
 
-This document outlines the design and implementation of a modern, responsive, and visually appealing shopping mall website. The application will be built using framework-less web technologies (HTML, CSS, JavaScript) and will leverage modern web standards like Web Components for a modular and maintainable codebase.
+This application is an AI-powered "Animal Face Test" website that identifies whether a user's face (or an uploaded image) more closely resembles a dog or a cat. It uses a custom-trained Teachable Machine model to perform the classification. The project focuses on a fun, interactive user experience with modern web standards and high-quality aesthetics.
 
 ## Project Plan
 
 ### 1. **HTML Structure (`index.html`)**
 
-*   **Header:** A navigation bar with the store logo, links to categories (e.g., "All", "Electronics", "Apparel"), and a shopping cart icon.
-*   **Main Content:** A product grid that will display items for sale. Each product will be a custom element (`<product-item>`).
-*   **Footer:** A footer with copyright information and links to social media.
+*   **Header:** Simple and friendly header with the app name "Animal Face Test".
+*   **Hero Section:** Brief explanation of the test and an inviting call to action.
+*   **Upload Area:** A prominent drag-and-drop zone for users to upload their photos. Includes a fallback "Browse Files" button.
+*   **Result Section (Hidden initially):**
+    *   **Image Preview:** Displays the uploaded image.
+    *   **Loading Spinner:** Shown while the AI model is processing the image.
+    *   **Classification Results:** Clear display of "Dog" or "Cat" percentage using progress bars and expressive icons.
+    *   **Recommendation/Fun Fact:** A small snippet of text based on the result.
+*   **Footer:** Copyright and links.
 
 ### 2. **Styling (`style.css`)**
 
-*   **Modern Design:** Employ a clean and modern aesthetic with a focus on user experience.
-*   **Responsive Layout:** Use CSS Grid and Flexbox to ensure the layout adapts to all screen sizes, from mobile to desktop.
+*   **Playful & Modern Design:** Use soft rounded corners, vibrant colors, and friendly typography.
+*   **Responsive Layout:** Mobile-first design to ensure a great experience on smartphones (where people often take selfies).
 *   **Visual Enhancements:**
-    *   **Color Palette:** A vibrant and energetic color scheme.
-    *   **Typography:** Expressive and hierarchical fonts to guide the user's attention.
-    *   **Shadows:** Multi-layered drop shadows on interactive elements to create a sense of depth.
-    *   **Texture:** A subtle noise texture on the main background for a premium feel.
-*   **CSS Variables:** Use custom properties for easy theming and maintenance.
+    *   **Color Palette:** Warm yellows, friendly blues, and soft pinks.
+    *   **Animations:** Smooth transitions for the upload area and results display.
+    *   **Drop Shadows:** Soft, deep shadows to give elements a "lifted" feel.
+    *   **Glow Effects:** Subtle glows on the result highlights.
+*   **Loading State:** A beautiful, custom CSS animation for the loading state.
 
 ### 3. **JavaScript Logic (`main.js`)**
 
-*   **Web Components:**
-    *   `<product-item>`: A custom element to display a single product. It will include properties for the product image, name, price, and a button to add the item to the cart.
-*   **Interactivity:**
-    *   **Shopping Cart:** Implement a simple client-side shopping cart that updates when a user adds a product.
-    *   **Product Rendering:** Dynamically render the product grid from a JavaScript array of product data.
-*   **Modern JavaScript:** Utilize ES Modules, async/await, and other modern syntax for clean and efficient code.
+*   **Teachable Machine Integration:**
+    *   Load the model from `https://teachablemachine.withgoogle.com/models/CVkszXzkx/`.
+    *   Use `@teachablemachine/image` and `tensorflow/tfjs`.
+*   **Image Handling:**
+    *   Implement drag-and-drop and file input listeners.
+    *   Generate a local URL for the uploaded image to display a preview immediately.
+*   **Classification:**
+    *   Pass the preview image to the TM model.
+    *   Process the results (array of probabilities).
+*   **UI Updates:**
+    *   Transition from the upload state to the results state.
+    *   Animate progress bars based on the probability scores.
+*   **Social Sharing (Optional):** Add buttons to share the result.
 
 ### 4. **Features & Enhancements**
 
-*   **Dark Mode Toggle:** A theme switcher in the header to toggle between light and dark modes. User preferences are persisted using `localStorage`.
-*   **Product Data:** Initially, product data will be stored in a local JavaScript array. In the future, this could be fetched from a remote API.
-*   **Accessibility (A11Y):** Ensure all elements are accessible by using semantic HTML and ARIA attributes where necessary.
-*   **Interactivity:** Add a "glow" effect to buttons and other interactive elements on hover/focus.
-
+*   **Camera Integration:** Allow users to take a photo directly from their device.
+*   **Accessibility:** Ensure the site is screen-reader friendly and has good color contrast.
+*   **Performance:** Optimize model loading and image processing for speed.
