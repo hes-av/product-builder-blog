@@ -149,23 +149,23 @@ footer {
     color: var(--text-color);
 }
 
-.partnership-section {
+.partnership-section, .comments-section {
     margin-top: 4rem;
     display: flex;
     justify-content: center;
 }
 
-.partnership-section .card {
+.partnership-section .card, .comments-section .card {
     background-color: var(--card-background);
     padding: 2.5rem;
     border-radius: 16px;
     box-shadow: 0 10px 30px var(--shadow-color);
-    max-width: 600px;
+    max-width: 800px;
     width: 100%;
 }
 
-.partnership-section h2 {
-    margin-bottom: 0.5rem;
+.partnership-section h2, .comments-section h2 {
+    margin-bottom: 1.5rem;
     color: var(--primary-color);
 }
 
