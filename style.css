@@ -148,3 +148,80 @@ footer {
     background-color: var(--card-background);
     color: var(--text-color);
 }
+
+.partnership-section {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.partnership-section .card {
+    background-color: var(--card-background);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    max-width: 600px;
+    width: 100%;
+}
+
+.partnership-section h2 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.partnership-section p {
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.partnership-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-group input, .form-group textarea {
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--shadow-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--glow-color);
+}
+
+.submit-btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--glow-color);
+}
