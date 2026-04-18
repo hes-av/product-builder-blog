@@ -1,53 +1,49 @@
 
-# Animal Face Test Application Blueprint
+# Animal Face Test Application Blueprint (AdSense Optimized - v2)
 
 ## Overview
 
-This application is an AI-powered "Animal Face Test" website that identifies whether a user's face (or an uploaded image) more closely resembles a dog or a cat. It uses a custom-trained Teachable Machine model to perform the classification. The project focuses on a fun, interactive user experience with modern web standards and high-quality aesthetics.
+This application is an AI-powered "Animal Face Test" website. After a rejection for "Low Value Content", we are overhauling the site to provide a massive amount of high-quality, original, and informative textual content alongside the AI tool.
 
 ## Project Plan
 
-### 1. **HTML Structure (`index.html`)**
+### 1. **Content Expansion (AdSense "High Value" Strategy)**
 
-*   **Header:** Simple and friendly header with the app name "Animal Face Test".
-*   **Hero Section:** Brief explanation of the test and an inviting call to action.
-*   **Upload Area:** A prominent drag-and-drop zone for users to upload their photos. Includes a fallback "Browse Files" button.
-*   **Result Section (Hidden initially):**
-    *   **Image Preview:** Displays the uploaded image.
-    *   **Loading Spinner:** Shown while the AI model is processing the image.
-    *   **Classification Results:** Clear display of "Dog" or "Cat" percentage using progress bars and expressive icons.
-    *   **Recommendation/Fun Fact:** A small snippet of text based on the result.
-*   **Footer:** Copyright and links.
+*   **Comprehensive Animal Guides:** Instead of short blurbs, create detailed articles for 7+ animal types (Dog, Cat, Fox, Wolf, Rabbit, Bear, Dinosaur).
+    *   Each guide will include: Characteristics, Representative Celebrities (generic descriptions), and "Personality Traits" associated with the face type.
+*   **Educational Articles:**
+    *   "AI and Facial Recognition: How it works in 2026"
+    *   "The History of Physiognomy (관상) and Modern Animal Face Trends"
+    *   "Why Animal Face Tests are Popular in Social Media"
+*   **FAQ & Help Center:** Expand the FAQ into a full help section.
+*   **Blog/Insights Section:** Add a section for "Weekly Animal Face Insights" to show the site is active and regularly updated.
 
-### 2. **Styling (`style.css`)**
+### 2. **Language Consistency & Compliance**
 
-*   **Playful & Modern Design:** Use soft rounded corners, vibrant colors, and friendly typography.
-*   **Responsive Layout:** Mobile-first design to ensure a great experience on smartphones (where people often take selfies).
-*   **Visual Enhancements:**
-    *   **Color Palette:** Warm yellows, friendly blues, and soft pinks.
-    *   **Animations:** Smooth transitions for the upload area and results display.
-    *   **Drop Shadows:** Soft, deep shadows to give elements a "lifted" feel.
-    *   **Glow Effects:** Subtle glows on the result highlights.
-*   **Loading State:** A beautiful, custom CSS animation for the loading state.
+*   **Full Localization:** Translate all compliance pages (`about.html`, `privacy.html`, `terms.html`, `contact.html`) into Korean to match the main site's content. Consistency is vital for AdSense reviews.
+*   **Enhanced Privacy Policy:** Include specific clauses for Google AdSense, cookies, and GDPR/CCPA compliance where applicable.
+*   **Clear Disclaimer:** Ensure a clear disclaimer that the site is for entertainment purposes.
 
-### 3. **JavaScript Logic (`main.js`)**
+### 3. **Modern UI/UX (Baseline Features)**
 
-*   **Teachable Machine Integration:**
-    *   Load the model from `https://teachablemachine.withgoogle.com/models/CVkszXzkx/`.
-    *   Use `@teachablemachine/image` and `tensorflow/tfjs`.
-*   **Image Handling:**
-    *   Implement drag-and-drop and file input listeners.
-    *   Generate a local URL for the uploaded image to display a preview immediately.
-*   **Classification:**
-    *   Pass the preview image to the TM model.
-    *   Process the results (array of probabilities).
-*   **UI Updates:**
-    *   Transition from the upload state to the results state.
-    *   Animate progress bars based on the probability scores.
-*   **Social Sharing (Optional):** Add buttons to share the result.
+*   **Design System:**
+    *   **Colors:** Use `oklch` for vibrant, consistent colors.
+    *   **Depth:** Multi-layered drop shadows for a premium feel.
+    *   **Texture:** Subtle noise texture on backgrounds.
+    *   **Typography:** Expressive headings (Fredoka One) and readable body text (Noto Sans KR).
+*   **Interactivity:**
+    *   Smooth transitions between upload, loading, and result states.
+    *   Interactive hover effects on animal cards.
 
-### 4. **Features & Enhancements**
+### 4. **SEO & Technical Excellence**
 
-*   **Camera Integration:** Allow users to take a photo directly from their device.
-*   **Accessibility:** Ensure the site is screen-reader friendly and has good color contrast.
-*   **Performance:** Optimize model loading and image processing for speed.
+*   **Structured Data:** Add JSON-LD for "SoftwareApplication" and "Article" to help Google understand the content.
+*   **Performance:** Optimize image loading and script execution.
+*   **Accessibility:** Full ARIA support and semantic HTML.
+
+### 5. **Implementation Steps**
+
+1.  **Phase 1: Content Overhaul** - Rewrite and expand all text in `index.html`.
+2.  **Phase 2: Subpage Localization** - Translate and flesh out `about`, `privacy`, `terms`, and `contact`.
+3.  **Phase 3: Visual Polish** - Update `style.css` with advanced CSS features (layers, container queries, `:has()`).
+4.  **Phase 4: Technical Validation** - Check meta tags, alt texts, and script performance.
