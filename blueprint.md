@@ -1,49 +1,52 @@
-
-# Animal Face Test Application Blueprint (AdSense Optimized - v2)
+# Animal Face Test Application Blueprint (Professional AdSense Edition - v3)
 
 ## Overview
 
-This application is an AI-powered "Animal Face Test" website. After a rejection for "Low Value Content", we are overhauling the site to provide a massive amount of high-quality, original, and informative textual content alongside the AI tool.
+This application is an AI-powered "Animal Face Test" website designed for high-quality user experience and Google AdSense optimization. It uses a modern, professional aesthetic, detailed textual content, and sophisticated UI components to distinguish itself from "amateur" alternatives.
 
 ## Project Plan
 
-### 1. **Content Expansion (AdSense "High Value" Strategy)**
+### 1. **Professional Re-Branding (Typography & UI)**
 
-*   **Comprehensive Animal Guides:** Instead of short blurbs, create detailed articles for 7+ animal types (Dog, Cat, Fox, Wolf, Rabbit, Bear, Dinosaur).
-    *   Each guide will include: Characteristics, Representative Celebrities (generic descriptions), and "Personality Traits" associated with the face type.
-*   **Educational Articles:**
-    *   "AI and Facial Recognition: How it works in 2026"
-    *   "The History of Physiognomy (관상) and Modern Animal Face Trends"
-    *   "Why Animal Face Tests are Popular in Social Media"
-*   **FAQ & Help Center:** Expand the FAQ into a full help section.
-*   **Blog/Insights Section:** Add a section for "Weekly Animal Face Insights" to show the site is active and regularly updated.
+*   **Typography:** Replace the current playful fonts with **Pretendard**, the industry-standard variable font for Korean web interfaces. This provides a clean, modern, and trustworthy feel.
+*   **Header Layout:** Move the Navigation Menu and Dark/Light Mode toggle to the **top right** for a more standard and professional layout.
+*   **Modern Toggle:** Replace the current button toggle with a sophisticated, animated sliding switch or a highly refined icon button that matches a professional UI.
+*   **Aesthetics:**
+    *   **Color Palette:** Refined `oklch` palette with subtle, professional hues.
+    *   **Shadows:** Multi-layered, soft "lifted" shadows for cards and buttons.
+    *   **Glassmorphism:** Use subtle blur effects on the sticky header and floating elements.
+    *   **Textures:** Maintain the subtle noise texture for a premium feel.
 
-### 2. **Language Consistency & Compliance**
+### 2. **Content Strategy (AdSense Optimization)**
 
-*   **Full Localization:** Translate all compliance pages (`about.html`, `privacy.html`, `terms.html`, `contact.html`) into Korean to match the main site's content. Consistency is vital for AdSense reviews.
-*   **Enhanced Privacy Policy:** Include specific clauses for Google AdSense, cookies, and GDPR/CCPA compliance where applicable.
-*   **Clear Disclaimer:** Ensure a clear disclaimer that the site is for entertainment purposes.
+*   **Detailed Results:** Expand the result descriptions with "Style Advice" and "Compatible Personalities" based on the animal type.
+*   **AI Model Transparency:** Add a section explaining the AI technology (e.g., MobileNet/CNN-based image classification) to provide educational value.
+*   **"How it Works" Section:** A clear, step-by-step visual guide for users.
+*   **Ad Placement Strategy:**
+    *   **Top Banner:** Above the hero section.
+    *   **In-Feed Ad:** Between the test section and the animal guide.
+    *   **Result Ad:** Just below the main result card.
+    *   **Anchor Ad:** Fixed at the bottom for mobile.
 
-### 3. **Modern UI/UX (Baseline Features)**
+### 3. **Modern Technical Stack (Baseline)**
 
-*   **Design System:**
-    *   **Colors:** Use `oklch` for vibrant, consistent colors.
-    *   **Depth:** Multi-layered drop shadows for a premium feel.
-    *   **Texture:** Subtle noise texture on backgrounds.
-    *   **Typography:** Expressive headings (Fredoka One) and readable body text (Noto Sans KR).
-*   **Interactivity:**
-    *   Smooth transitions between upload, loading, and result states.
-    *   Interactive hover effects on animal cards.
+*   **CSS Layers:** Maintain `@layer` for cascade management.
+*   **Container Queries:** For responsive cards in the grid.
+*   **Web Components:** Use custom elements for reusable UI parts (e.g., `<animal-card>`, `<adsense-placeholder>`).
+*   **Performance:** Optimize image loading and lazy-load non-critical sections.
 
-### 4. **SEO & Technical Excellence**
+### 4. **Implementation Steps**
 
-*   **Structured Data:** Add JSON-LD for "SoftwareApplication" and "Article" to help Google understand the content.
-*   **Performance:** Optimize image loading and script execution.
-*   **Accessibility:** Full ARIA support and semantic HTML.
+1.  **Phase 1: Professional Typography & Header** - Update `style.css` to use Pretendard and reposition header elements.
+2.  **Phase 2: UI Component Refinement** - Replace the theme toggle with a modern sliding switch and update all buttons and cards.
+3.  **Phase 4: Content Enrichment** - Expand `index.html` with professional text, AI technology explanations, and AdSense slots.
+4.  **Phase 5: Final Polish** - Ensure mobile responsiveness and smooth animations.
+5.  **Phase 6: Deployment** - Git commit, push, and `firebase deploy`.
 
-### 5. **Implementation Steps**
-
-1.  **Phase 1: Content Overhaul** - Rewrite and expand all text in `index.html`.
-2.  **Phase 2: Subpage Localization** - Translate and flesh out `about`, `privacy`, `terms`, and `contact`.
-3.  **Phase 3: Visual Polish** - Update `style.css` with advanced CSS features (layers, container queries, `:has()`).
-4.  **Phase 4: Technical Validation** - Check meta tags, alt texts, and script performance.
+## Current Status (v3)
+- [ ] Implement Pretendard font.
+- [ ] Move nav/toggle to top-right.
+- [ ] Create modern theme toggle switch.
+- [ ] Add "How it Works" and "AI Model" sections.
+- [ ] Add AdSense placeholders.
+- [ ] Verify responsiveness and aesthetics.
